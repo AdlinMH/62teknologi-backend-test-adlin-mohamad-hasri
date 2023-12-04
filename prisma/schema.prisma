@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model business_search {
+  latitude  Decimal? @db.Decimal
+  longitude Decimal? @db.Decimal
+  alias     String   @db.VarChar
+  name      String   @db.VarChar
+  image_url String?  @db.VarChar
+  is_closed Boolean?
+  url       String?  @db.VarChar
+  price     String?  @db.VarChar
+  id        String   @db.VarChar
+  identity  BigInt   @default(autoincrement())
+
+  @@ignore
+}
