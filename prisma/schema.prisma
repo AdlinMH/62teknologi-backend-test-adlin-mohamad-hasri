@@ -7,8 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model business_search {
+model BusinessSearch {
+  identity  BigInt   @id @default(autoincrement())
+  id        String   @db.VarChar
   latitude  Decimal? @db.Decimal
   longitude Decimal? @db.Decimal
   alias     String   @db.VarChar
@@ -17,8 +18,6 @@ model business_search {
   is_closed Boolean?
   url       String?  @db.VarChar
   price     String?  @db.VarChar
-  id        String   @db.VarChar
-  identity  BigInt   @default(autoincrement())
-
-  @@ignore
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
