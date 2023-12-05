@@ -15,8 +15,16 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   const res: Business = await request.json()
   const post = await prisma.post.update({
-    where: { id: 1 },
+    where: { id: res.id },
     data: {res},
+  })
+  return NextResponse.json({ data: null, success: true }, { status: 200 })
+}
+
+export async function DELETE(request: Request) {
+  const res: Business = await request.json()
+  const deleteUser = await prisma.user.delete({
+    where: { id: res.id },
   })
   return NextResponse.json({ data: null, success: true }, { status: 200 })
 }
