@@ -1,5 +1,5 @@
 /**
- * GET: business get search
+ * GET: /business
  * */
 export type BusinessesGetSearchReq = {
   location?: string
@@ -29,37 +29,6 @@ export type BusinessesGetSearchRes = {
       longitude: string
     }
   }
-}
-
-
-/**
- * GET: business get detail
- * */
-export type BusinessesGetDetailParams = {
-  business_id_or_alias: number | undefined
-}
-export type BusinessesGetDetailRes = Omit<Business, 'distance' | 'attributes'> & {
-  is_claimed: boolean
-  photos: string[]
-}
-
-
-/**
- * GET: business get review
- * */
-export type BusinessesGetReviewParams = {
-  business_id_or_alias: number | undefined
-}
-export type BusinessesGetReviewReq = {
-  locale?: string
-  offset?: number
-  limit?: number
-  sort_by?: string
-}
-export type BusinessesGetReviewRes = {
-  total: number
-  reviews: Business_Review[]
-  possible_languages: string[]
 }
 
 
